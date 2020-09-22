@@ -84,6 +84,7 @@ stephanie_day_hourly_averages <- read_csv("data/temperature_sensors/stephanie/st
 **Task (Write and Run Code)**: Write code necessary to load Michael values as a new ojbject called michael_day_hourly_averages
 
 ```{r}
+michael_day_hourly_averages <- read_csv("data/temperature_sensors/michael/michael_day_hourly_averages.csv")
 
 ```
 
@@ -94,7 +95,7 @@ Now, follow the standard steps to examine the data you loaded.
 **Task (Write and Run Code)**: run the code below to glimpse() the stephanie dataframe.
 
 ```{r}
-
+glimpse(stephanie_day_hourly_averages)
 ```
 
 **Task (Create a New Codeblock, Write Code and Run It)**: create a new codeblock and write the necessary code to display the stephanie dataframe in the markdown document below the codeblock. 
@@ -237,6 +238,28 @@ stephanie_daily_min_max
 Okay, now it's your turn to examine Michael's house and answer some questions.  
 
 **Task (Create a codeblock, write and run)**: 
+```{r}
+michael_day_hourly_averages <- michael_day_hourly_averages %>%
+  mutate(date = date(date_hour)) %>%
+  select(date, everything()) %>%
+  filter(date >= "2019-07-16") %>%
+  filter(date <= "2019-07-22")
+
+michael_daily_count <- michael_day_hourly_averages %>%
+  group_by(date) %>%
+  count()
+
+michael_daily_mean_max_min <- michael_day_hourly_averages %_%
+  group_by(date) %>%
+  summarise(heat_index_max = max(mean_indoor_heat_index),
+            heat_index_min = min(mean_indoor_heat_index),
+            average_heat_index = mean(mean_indoor_heat_index),
+            count = n(
+              
+            
+            michael_daily
+            
+```
 
 Create a codeblock and write code necessary to output a **single table** that groups and summarizes to do the following:
 
